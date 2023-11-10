@@ -11,6 +11,7 @@ using TestApiJwt.Settings;
 
 namespace TestApiJwt.Services
 {
+    // start of registration scheme
     public class AuthService : IAuthService
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -74,6 +75,9 @@ namespace TestApiJwt.Services
                 RefreshTokenExpiration = refreshToken.ExpiresOn
             };
         }
+        //end of registration scheme
+
+        //start of login scheme
 
         public async Task<AuthModel> GetTokenAsync(TokenRequestModel model)
         {
@@ -114,7 +118,10 @@ namespace TestApiJwt.Services
 
             return authModel;
         }
+        //end of login scheme
 
+
+        //start of assign role to a user scheme
         public async Task<string> AddRoleAsync(AddRoleModel model)
         {
             var user = await _userManager.FindByIdAsync(model.UserId);
@@ -128,7 +135,8 @@ namespace TestApiJwt.Services
             var result = await _userManager.AddToRoleAsync(user, model.Role);
 
             return result.Succeeded ? string.Empty : "Sonething went wrong";
-        }
+
+        }//end of assign role to a user scheme
 
         private async Task<JwtSecurityToken> CreateJwtToken(ApplicationUser user)
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using TestApiJwt.Models;
 
 public class Shop
@@ -19,6 +20,7 @@ public class Shop
     // Add other shop-related properties
 
     // Foreign key to link a shop to a user
+    [AllowNull]
     public string UserId { get; set; }
     public ApplicationUser? User { get; set; }
 }
